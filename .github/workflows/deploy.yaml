@@ -1,0 +1,16 @@
+name: Deploy to EKS
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      users: actions/checkout@v2
+    - name: Build & Push Docker Image
+      run: |
+        docker build -t localhost:5000/myapp:latest .
+        docker push localhost:5000/myapp:latest
+    - name: Apply Kubernetes Manifests
+      run: |
+        kubectl apply -f deployment.yaml
+        kubectl apply -f service.yaml
