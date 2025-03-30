@@ -1,5 +1,8 @@
 name: Deploy to EKS
 on: push
+permissions:
+  packages: write
+  contents: read
 jobs:
   deploy:
     runs-on: ubuntu-latest
