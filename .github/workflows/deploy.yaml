@@ -12,4 +12,3 @@ jobs:
       run: |
         docker build -t ghcr.io/${{ github.repository_owner }}/myapp:latest .
         docker push ghcr.io/${{ github.repository_owner }}/myapp:latest
-    - name: Build & Push Docker Image
