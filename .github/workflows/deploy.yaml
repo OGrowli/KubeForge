@@ -6,9 +6,11 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v2
+    - name: Set Repository Owner to Lowercase
+      run: echo "REPO_OWNER=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
     - name: Log in to GitHub Container Registry
       run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ogrowli --password-stdin
     - name: Build & Push Docker Image
       run: |
-        docker build -t ghcr.io/${{ github.repository_owner | toLower }}/myapp:latest .
-        docker push ghcr.io/${{ github.repository_owner | toLower }}/myapp:latest
+        docker build -t ghcr.io/${{ env.REPO_OWNER }}/myapp:latest .
+        docker push ghcr.io/${{ env.REPO_OWNER }}/myapp:latest
