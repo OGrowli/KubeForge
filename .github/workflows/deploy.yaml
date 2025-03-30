@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Code
-      users: actions/checkout@v2
+      uses: actions/checkout@v2
     - name: Build & Push Docker Image
       run: |
         docker build -t localhost:5000/myapp:latest .
