@@ -55,4 +55,5 @@ jobs:
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
           kubectl set image deployment/myapp myapp=ghcr.io/${{ env.REPO_OWNER }}/myapp:latest
+          kubectl get pods
           kubectl rollout status deployment/myapp
