@@ -28,6 +28,8 @@ jobs:
   deploy:
     name: "Build and Deploy to EKS"
     runs-on: ubuntu-latest
+    needs: terraform
+    environment: dep
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
