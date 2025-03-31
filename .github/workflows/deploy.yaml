@@ -21,9 +21,10 @@ jobs:
     - name: Terraform Init
       run: terraform init
     - name: Terraform Plan
-      run: terraform plan
+      run: terraform plan -out=tfplan
     - name: Terraform Apply
-      run: terraform apply -auto-approve
+      if: steps.plan.outputs.changes == 'true'
+      run: terraform apply -auto-approve tfplan
 
   deploy:
     name: "Build and Deploy to EKS"
